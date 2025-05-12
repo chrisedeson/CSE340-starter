@@ -14,9 +14,13 @@
     "ejs": "^3.1.10",
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1",
-    "pg": "^8.8.0"
+    "livereload-js": "^4.0.2",
+    "pg": "^8.8.0",
+    "save-dev": "0.0.1-security"
   },
   "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.3",
     "nodemon": "^3.1.0"
   }
 }

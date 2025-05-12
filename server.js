@@ -11,6 +11,22 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 
+// LiveReload Setup
+const livereload = require("livereload")
+const connectLivereload = require("connect-livereload")
+const path = require("path")
+
+const liveReloadServer = livereload.createServer()
+liveReloadServer.watch(path.join(__dirname, 'public'), path.join(__dirname, 'views'))
+
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/")
+  }, 100)
+})
+
+app.use(connectLivereload()) // <--- injects livereload script automatically
+
 /* ***********************
  * View Engine and Templates
  *************************/
