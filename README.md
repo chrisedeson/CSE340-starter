@@ -1,6 +1,12 @@
+## Production Website
+
+The site is deployed and running at:
+[https://cse340-starter-jlmj.onrender.com/](https://cse340-starter-jlmj.onrender.com/)
+
 ## Getting Started
 
 This document is intended to get you started quickly in building a backend driven Node.js application complete with pages and content, backend logic and a PostgreSQL database for data storage.
+
 ## Prerequisites
 
 The only prerequisite software required to have installed at this point is Git for version control and a code editor - we will use VS Code (VSC).
@@ -42,6 +48,6 @@ When you installed Git and cloned the remote repository in week 1, you should ha
 1. Find and move that simple web page to the public folder. Be sure to note its name.
 ## Test in a browser
 
-1. Go to http://localhost:5500 in a browser tab. Nothing should be visible as the server has not been setup to repond to that route.
+1. Go to http://localhost:5500 in a browser tab. Nothing should be visible as the server has not been setup to respond to that route.
 2. Add "/filename.html" to the end of the URL (replacing filename with the name of the file you moved to the public folder).
 3. You should see that page in the browser.
