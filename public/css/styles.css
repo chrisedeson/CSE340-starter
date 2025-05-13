@@ -3,4 +3,209 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5em;
+}
+
+.site-name a {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.tools a {
+  font-size: .8rem;
+  text-transform: uppercase;
+}
+.tools a:hover {
+  text-decoration: underline;
+}
+
+nav a, .top-header a {
+  text-decoration: none;
+  color: black;
+}
+
+/* NAV BAR */
+nav ul {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  list-style: none;
+  font-size: .9rem;
+  background-color: rgb(20, 12, 39);
+}
+
+nav ul li a {
+  color: white;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  transition: 1s;
+  color: yellow;
+}
+
+/* MAIN */
+main {
+  padding: 1.5em .5em;
+}
+
+main h2 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding-bottom: .75em;
+}
+
+.hero {
+  background: url("../images/vehicles/delorean.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 5em;
+  width: auto;
+  height: 75%;
+}
+
+.hero-text {
+  display: inline-block;
+  padding: .2em;
+  background-color: rgba(31, 31, 31, 0.336);
+}
+
+.hero h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.25rem;
+  color: #04acac;
+}
+
+.hero p {
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #10fcfc;
+  font-weight: 600;
+}
+
+.cta-btn {
+  background-color: #61d5f8;
+  font-weight: 800;
+  padding: .75em;
+  margin-top: .4em;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-btn:hover {
+  background-color: #05bdbd;
+}
+
+/* SECTION */
+
+section {
+  padding-top: 2em;
+}
+
+section ul {
+  padding-left: 1em;
+  padding-bottom: 2em;
+  line-height: 1.75;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 10px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+.upgrades .upgrade {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  text-align: center;
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  background-color: cyan;
+}
+
+.img-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+@media (min-width: 600px) {
+  html {
+    background: url("../images/site/small_check.jpg");
+    font-size: 18px;
+  }
+
+  body {
+    max-width: 75%;
+    margin: 0 auto;
+    background-color: white;
+    border: 5px solid cyan;
+  }
+  
+  .tools a {
+    padding-right: 1em;
+  }
+
+  nav {
+    padding-top: 1.5em;
+    margin: 0 1em;
+  }
+
+  .hero {
+    background-size: auto;
+    padding-bottom: 6em;
+  }
+  
+  .hero-text {
+    margin-left: 2em;
+  }
+  
+  .cta-btn {
+    padding: 1em 2.3em;
+    margin-top: 1.5em;
+    font-size: .75rem;
+  }
+
+}
+
+@media (min-width: 800px) {
+  section {
+    display: grid;
+    grid-auto-flow: column; /* horizontal layout like flex row */
+    direction: rtl;         /* reverses the order like row-reverse */
+    gap: 30px;
+  }
+
+  section > * {
+    direction: ltr; /* resets content direction inside each child */
+  }
+
+  section ul {
+    line-height: 2;
+  }
+
+  section h2 {
+    padding-top: 1em;
+    padding-bottom: 2em;
+  }
 }
