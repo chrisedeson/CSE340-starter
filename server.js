@@ -7,9 +7,12 @@
  *************************/
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
+const inventoryRoute = require("./routes/inventoryRoute")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+
+const baseController = require("./controllers/baseController")
 
 // LiveReload Setup
 const livereload = require("livereload")
@@ -54,6 +57,7 @@ app.listen(port, () => {
 })
 
 // Index route
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
+app.get("/", baseController.buildHome)
+
+// Inventory routes
+app.use("/inv", inventoryRoute)
