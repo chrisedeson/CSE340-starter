@@ -14,10 +14,8 @@
   padding: .5em;
 }
 
-.site-name a {
+.site-name {
   font-family: "Roboto", sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
 }
 
 .tools a {
