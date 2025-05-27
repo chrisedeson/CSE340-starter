@@ -209,3 +209,227 @@ section ul {
     padding-bottom: 2em;
   }
 }
+
+
+
+/******* Vehicle Detail View **********/
+.vehicle-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  margin: 2em 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.vehicle-image {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.vehicle-info {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.vehicle-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.vehicle-info p {
+  margin: 0.5em 0;
+}
+
+.vehicle-info strong {
+  font-weight: 600;
+}
+
+/******* Responsive Layout **********/
+@media (min-width: 768px) {
+  .vehicle-detail {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .vehicle-image {
+    flex: 1;
+    max-width: 45%;
+  }
+
+  .vehicle-info {
+    flex: 1;
+    padding-left: 2em;
+  }
+}
+
+
+/******* Error Page Styling *********/
+.error-page {
+  text-align: center;
+  padding: 3em 1em;
+  background-color: #fff5f5;
+  border: 1px solid #ffcccc;
+  border-radius: 8px;
+  margin: 2em auto;
+  max-width: 600px;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.1);
+}
+
+.error-page h1 {
+  font-size: 2rem;
+  color: #d90429;
+  margin-bottom: 0.5em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.error-page p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 2em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.error-btn {
+  display: inline-block;
+  background-color: #d90429;
+  color: white;
+  padding: 0.75em 1.5em;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.error-btn:hover {
+  background-color: #a5031f;
+}
+
+/* Responsive Adjustment */
+@media (min-width: 600px) {
+  .error-page {
+    padding: 4em 2em;
+  }
+
+  .error-page h1 {
+    font-size: 2.5rem;
+  }
+
+  .error-page p {
+    font-size: 1.2rem;
+  }
+}
+
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 0;
+  margin: 2rem auto;
+  max-width: 1200px;
+  list-style: none;
+  justify-content: center;
+}
+
+#inv-display li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+#inv-display li:hover,
+#inv-display li:focus-within {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  outline: none;
+}
+
+#inv-display li a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+  outline-offset: 2px;
+}
+
+#inv-display li a:focus {
+  outline: 2px solid #04acac;
+  outline-offset: 2px;
+}
+
+#inv-display img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid #ddd;
+  aspect-ratio: 4 / 3;
+}
+
+.namePrice {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.namePrice h2 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.namePrice h2 a {
+  color: #111;
+  transition: color 0.3s ease;
+}
+
+.namePrice h2 a:hover,
+.namePrice h2 a:focus {
+  color: #04acac;
+  text-decoration: underline;
+}
+
+.namePrice span {
+  font-weight: 700;
+  color: #04acac;
+  font-size: 1rem;
+  margin-top: auto;
+}
+
+.notice {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #555;
+  margin: 3rem 0;
+}
+
+/* Responsive Tweaks */
+
+@media (max-width: 600px) {
+  #inv-display {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 90%;
+  }
+
+  #inv-display li {
+    border-radius: 6px;
+    max-width: 100%;
+  }
+}
