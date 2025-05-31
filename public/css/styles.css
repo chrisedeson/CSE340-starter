@@ -444,41 +444,7 @@ section ul {
 
 
 
-/* ---------- Account Login Container ---------- */
-.account-login-container {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: "Roboto", sans-serif;
-}
-
-.account-login-container h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.75rem;
-}
-
-/* Flash message styling */
-.flash-message {
-  background-color: #ffefef;
-  border: 1px solid #ffcccc;
-  color: #cc0000;
-  padding: 0.75rem 1rem;
-  border-radius: 4px;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  font-size: 0.95rem;
-}
-
-/* Form layout */
-.login-form {
-  display: flex;
-  flex-direction: column;
-}
-
+/* ---------- Shared Form Styles (for both login and register) ---------- */
 .form-group {
   margin-bottom: 1rem;
 }
@@ -519,7 +485,39 @@ section ul {
   background-color: #038f8f;
 }
 
-/* Register link prompt */
+/* ---------- Login View Styles ---------- */
+.account-login-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+}
+
+.account-login-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.flash-message {
+  background-color: #ffefef;
+  border: 1px solid #ffcccc;
+  color: #cc0000;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .register-prompt {
   margin-top: 1.25rem;
   text-align: center;
@@ -536,9 +534,55 @@ section ul {
   text-decoration: underline;
 }
 
-/* Responsive adjustment */
+/* ---------- Register View Styles ---------- */
+.account-register-container {
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+}
+
+.account-register-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-hint {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.login-prompt {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.login-prompt .login-link {
+  color: #04acac;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-prompt .login-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Responsive Adjustments ---------- */
 @media (max-width: 600px) {
-  .account-login-container {
+  .account-login-container,
+  .account-register-container {
     margin: 1rem;
     padding: 1.5rem;
   }
