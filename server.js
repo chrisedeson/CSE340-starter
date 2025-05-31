@@ -73,7 +73,7 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
-// Routes section
+// Account section
 app.use("/account", accountRoute)
 
 // File Not Found Route - must be last route in list
