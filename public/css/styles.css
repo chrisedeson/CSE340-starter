@@ -431,3 +431,115 @@ section ul {
     max-width: 100%;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Account Login Container ---------- */
+.account-login-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+}
+
+.account-login-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+/* Flash message styling */
+.flash-message {
+  background-color: #ffefef;
+  border: 1px solid #ffcccc;
+  color: #cc0000;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* Form layout */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #04acac;
+  box-shadow: 0 0 0 2px rgba(4, 172, 172, 0.2);
+}
+
+.btn-submit {
+  background-color: #04acac;
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #038f8f;
+}
+
+/* Register link prompt */
+.register-prompt {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.register-prompt .register-link {
+  color: #04acac;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-prompt .register-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustment */
+@media (max-width: 600px) {
+  .account-login-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
