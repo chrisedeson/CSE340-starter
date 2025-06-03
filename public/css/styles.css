@@ -660,3 +660,127 @@ ul.warning li .msg-close:hover {
     padding: 1.5rem;
   }
 }
+
+
+
+
+
+
+
+
+
+
+.form-container,
+.management-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+}
+
+.form-container h1,
+.management-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+form .form-group {
+  margin-bottom: 1.25rem;
+}
+
+form .form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+form .form-group input,
+form .form-group textarea,
+form .form-group select {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+form .form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+form button,
+.management-container a {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #04acac;
+  color: white;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover,
+.management-container a:hover {
+  background-color: #038f8f;
+}
+
+.management-container ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.management-container ul li {
+  margin: 1rem 0;
+}
+
+.alert.alert-danger {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  color: #721c24;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+
+
+/* Dynamic input validation feedback */
+input:focus,
+textarea:focus,
+select:focus {
+  background-color: #ffe5e5; /* light red when focused */
+  border-color: #d90429;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* While typing, if valid */
+input:valid,
+textarea:valid,
+select:valid {
+  background-color: #e6fff2; /* light green */
+  border-color: #04acac;
+}
+
+/* When invalid */
+input:invalid,
+textarea:invalid,
+select:invalid {
+  background-color: #ffe5e5;
+  border-color: #d90429;
+}
+
+/* Ensure better appearance on older browsers */
+input,
+textarea,
+select {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}

@@ -1,28 +1,29 @@
 <div class="form-container">
   <h1>Add New Classification</h1>
 
-  <!-- Flash messages -->
   <%- messages() %>
 
-  <!-- Server-side validation errors -->
   <% if (errors) { %>
-  <ul class="error">
-    <% errors.array().forEach(error => { %>
-    <li><%= error.msg %></li>
-    <% }) %>
-  </ul>
+    <ul class="error">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
   <% } %>
 
   <form action="/inv/add-classification" method="post">
-    <label for="classification_name">Classification Name ( no spaces/special chars):</label>
-    <input type="text"
-        id="classification_name"    
+    <div class="form-group">
+      <label for="classification_name">Classification Name (no spaces or special characters):</label>
+      <input
+        type="text"
+        id="classification_name"
         name="classification_name"
         pattern="^[a-zA-Z0-9]+$"
-        title="Only letters and numbers allowed, no spaces or special characters"
+        title="Only letters and numbers allowed"
         required
-        value="<%= typeof classification_name !== "undefined" ? classification_name : "" %>"
-    >
-    <button type="submit">Add Classification</button>   
+        value="<%= typeof classification_name !== 'undefined' ? classification_name : '' %>"
+      />
+    </div>
+    <button type="submit">Add Classification</button>
   </form>
 </div>
