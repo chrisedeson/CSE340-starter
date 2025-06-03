@@ -1,0 +1,75 @@
+<h1>Add New Inventory Item</h1>
+
+<!-- Flash messages -->
+<%- messages() %>
+
+<% if (errors) { %>
+  <div class="alert alert-danger">
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<form action="/inv/add" method="POST">
+  <div class="form-group">
+    <label for="inv_make">Make</label>
+    <input type="text" name="inv_make" id="inv_make" class="form-control" value="<%= inv_make || '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inv_model">Model</label>
+    <input type="text" name="inv_model" id="inv_model" class="form-control" value="<%= inv_model || '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inv_year">Year</label>
+    <input type="number" name="inv_year" id="inv_year" class="form-control" value="<%= inv_year || '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inv_price">Price</label>
+    <input type="number" name="inv_price" id="inv_price" class="form-control" value="<%= inv_price || '' %>" step="0.01" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inv_miles">Mileage</label>
+    <input type="number" name="inv_miles" id="inv_miles" class="form-control" value="<%= inv_miles || '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inv_color">Color</label>
+    <input type="text" name="inv_color" id="inv_color" class="form-control" value="<%= inv_color || '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inv_description">Description</label>
+    <textarea name="inv_description" id="inv_description" class="form-control" required><%= inv_description || '' %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="inv_image">Image URL</label>
+    <input type="text" name="inv_image" id="inv_image" class="form-control" value="<%= inv_image || '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="inv_thumbnail">Thumbnail URL</label>
+    <input type="text" name="inv_thumbnail" id="inv_thumbnail" class="form-control" value="<%= inv_thumbnail || '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="classification_id">Classification</label>
+    <select name="classification_id" id="classification_id" class="form-control" required>
+      <option value="">Choose a Classification</option>
+      <% classifications.forEach(classification => { %>
+        <option value="<%= classification.classification_id %>" <%= classification_id == classification.classification_id ? 'selected' : '' %>>
+          <%= classification.classification_name %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Item</button>
+</form>
