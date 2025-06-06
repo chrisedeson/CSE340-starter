@@ -77,4 +77,43 @@ validate.checkRegData = async (req, res, next) => {
     next()
 }
 
+
+/* **********************************
+ * Login Data Validation Rules
+ * ********************************* */
+validate.loginRules = () => {
+  return [
+    // email validation
+    body("account_email")
+      .trim()
+      .escape()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required."),
+
+    // password must exist (don't check strength here)
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .withMessage("Password is required."),
+  ];
+};
+
+validate.checkLoginData = async (req, res, next) => {
+  const { account_email } = req.body;
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("account/login", {
+      title: "Login",
+      nav,
+      errors,
+      account_email, // pre-fill the email field
+    });
+    return;
+  }
+  next();
+};
+
+
 module.exports = validate
