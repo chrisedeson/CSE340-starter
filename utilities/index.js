@@ -108,13 +108,13 @@ Util.buildVehicleDetail = async function (vehicle) {
 Util.checkLogin = (req, res, next) => {
   const token = req.cookies.jwt;
   if (!token) {
-    req.flash("notice", "Please log in to access your account.");
+    req.flash("error", "Please log in to access your account.");
     return res.redirect("/account/login");
   }
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
     if (err) {
-      req.flash("notice", "Session expired. Please log in again.");
+      req.flash("error", "Session expired. Please log in again.");
       res.clearCookie("jwt");
       return res.redirect("/account/login");
     }
