@@ -50,4 +50,14 @@ router.get("/error-test", (req, res, next) => {
   next(new Error("Intentional Server Error for Testing"));
 });
 
+// Route to build inventory edit view
+router.get("/edit/:inv_id", utilities.checkLogin, utilities.handleErrors(invController.editInventoryView));
+
+router.post(
+  "/update",
+  invValidate.inventoryRules(),   // reuse validation middleware
+  invValidate.checkInvData,
+  utilities.handleErrors(invController.updateInventory)  // new controller function
+);
+
 module.exports = router;
