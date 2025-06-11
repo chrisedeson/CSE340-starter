@@ -44,7 +44,12 @@ function buildInventoryList(data) {
 }
 
 const form = document.querySelector("#updateForm");
-form.addEventListener("change", function () {
-  const updateBtn = document.querySelector("button");
-  updateBtn.removeAttribute("disabled");
-});
+if (form) {
+  form.addEventListener("change", function () {
+    const updateBtn = document.querySelector("button");
+    if (updateBtn) {
+      updateBtn.removeAttribute("disabled");
+    }
+  });
+}
+

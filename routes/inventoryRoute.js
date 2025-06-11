@@ -5,6 +5,7 @@ const invController = require("../controllers/invController");
 const invValidate = require("../utilities/inventory-validation");
 const classValidation = require("../utilities/classification-validation");
 const utilities = require("../utilities");
+const invCont = require("../controllers/invController");
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -59,5 +60,12 @@ router.post(
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 );
+
+// GET route to display the delete confirmation page
+router.get('/delete/:inv_id', invCont.deleteConfirmation);
+
+// POST route to handle the deletion
+router.post('/delete', invCont.deleteInventoryItem);
+
 
 module.exports = router;

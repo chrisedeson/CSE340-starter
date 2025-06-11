@@ -268,4 +268,47 @@ invCont.updateInventory = async function (req, res, next) {
   }
 };
 
+// Build delete confirmation view
+invCont.deleteConfirmation = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id);
+  const nav = await utilities.getNav();
+
+  try {
+    const item = await invModel.getVehicleById(inv_id);
+    if (!item) {
+      req.flash("error", "Vehicle not found.");
+      return res.redirect("/inv");
+    }
+
+    const name = `${item.inv_make} ${item.inv_model}`;
+
+    res.render("inventory/delete-inventory", {
+      title: `Delete ${name}`,
+      nav,
+      errors: null,
+      inv_id: item.inv_id,
+      inv_make: item.inv_make,
+      inv_model: item.inv_model,
+      inv_year: item.inv_year,
+      inv_price: item.inv_price,
+      classification_id: item.classification_id,
+    });
+  } catch (err) {
+    console.error("Error loading delete view:", err);
+    next(err);
+  }
+};
+
+invCont.deleteInventoryItem = async function (req, res) {
+  const inv_id = parseInt(req.body.inv_id);
+  const result = await invModel.deleteInventoryItem(inv_id);
+  if (result.rowCount) {
+    req.flash("success", "Inventory item deleted successfully");
+    res.redirect("/inv");
+  } else {
+    req.flash("error", "Failed to delete inventory item");
+    res.redirect(`/inv/delete/${inv_id}`);
+  }
+};
+
 module.exports = invCont;

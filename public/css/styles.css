@@ -806,3 +806,19 @@ select {
   color: #ffffffcc;
   cursor: not-allowed;
 }
+
+
+
+
+/* .btn-delete {
+  background-color: #04acac;
+  color: white;
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: #038c8c;
+} */
