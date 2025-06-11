@@ -30,9 +30,10 @@ Util.getNav = async function (req, res, next) {
  * Build the classification view HTML
  * ************************************ */
 Util.buildClassificationGrid = async function (data) {
-  let grid;
-  if (data.length > 0) {
-    grid = '<ul id="inv-display">';
+  let grid = "";
+
+  if (Array.isArray(data) && data.length > 0) {
+    grid += '<ul id="inv-display">';
     data.forEach((vehicle) => {
       grid += "<li>";
       grid +=
@@ -42,7 +43,7 @@ Util.buildClassificationGrid = async function (data) {
         vehicle.inv_make +
         " " +
         vehicle.inv_model +
-        'details"><img src="' +
+        ' details"><img src="' +
         vehicle.inv_thumbnail +
         '" alt="Image of ' +
         vehicle.inv_make +
@@ -76,8 +77,22 @@ Util.buildClassificationGrid = async function (data) {
   } else {
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
   }
+
   return grid;
 };
+
+// ***********************************
+Util.buildClassificationList = async function (selectedId = null) {
+  let data = await invModel.getClassifications();
+  let list = '<select id="classificationList" name="classification_id">';
+  list += '<option value="">Choose a classification</option>';
+  data.rows.forEach((row) => {
+    list += `<option value="${row.classification_id}"${selectedId == row.classification_id ? " selected" : ""}>${row.classification_name}</option>`;
+  });
+  list += "</select>";
+  return list;
+};
+
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -104,7 +119,6 @@ Util.buildVehicleDetail = async function (vehicle) {
   return html;
 };
 
-
 Util.checkLogin = (req, res, next) => {
   const token = req.cookies.jwt;
   if (!token) {
@@ -125,7 +139,6 @@ Util.checkLogin = (req, res, next) => {
     next();
   });
 };
-
 
 /* ****************************************
  * Middleware to check token validity
