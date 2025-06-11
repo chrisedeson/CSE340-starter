@@ -33,7 +33,7 @@ router.get("/add", utilities.handleErrors(invController.buildAddInventoryView));
 router.post(
   "/add",
   invValidate.inventoryRules(),
-  invValidate.checkInvData,
+  invValidate.checkUpdateData,
   utilities.handleErrors(invController.addInventoryItem)
 );
 
@@ -55,9 +55,9 @@ router.get("/edit/:inv_id", utilities.checkLogin, utilities.handleErrors(invCont
 
 router.post(
   "/update",
-  invValidate.inventoryRules(),   // reuse validation middleware
-  invValidate.checkInvData,
-  utilities.handleErrors(invController.updateInventory)  // new controller function
+  invValidate.inventoryRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
 );
 
 module.exports = router;

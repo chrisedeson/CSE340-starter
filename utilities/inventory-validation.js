@@ -14,21 +14,48 @@ const inventoryRules = () => {
   ]
 }
 
-const checkInvData = async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    const nav = await utilities.getNav()
-    const classifications = (await invModel.getClassifications()).rows
+/* **********************************
+ * Check data and return errors to edit view
+ * ********************************** */
+const checkUpdateData = async (req, res, next) => {
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body;
 
-    return res.render("./inventory/add-inventory", {
-      title: "Add Inventory",
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    const classificationSelect = await utilities.buildClassificationList(classification_id);
+    res.render("./inventory/edit-inventory", {
+      title: "Edit " + inv_make + " " + inv_model,
       nav,
-      classifications,
+      classificationSelect,
       errors: errors.array(),
-      ...req.body
-    })
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    });
+    return;
   }
-  next()
+  next();
 }
 
-module.exports = { inventoryRules, checkInvData }
+module.exports = { inventoryRules, checkUpdateData }

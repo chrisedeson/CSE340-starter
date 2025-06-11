@@ -13,7 +13,7 @@
     </div>
   <% } %>
 
-  <form action="/inv/update" method="POST">
+  <form action="/inv/update" method="post" id="updateForm">
     <div class="form-group">
       <label for="inv_make">Make</label>
       <input type="text" name="inv_make" id="inv_make" value="<%= inv_make || '' %>" required />
@@ -83,6 +83,12 @@
       </select>
     </div>
 
-    <button type="submit">Update Vehicle</button>
+    <button type="submit" id="updateBtn" disabled>Update Vehicle</button>
+
+    <input type="hidden" name="inv_id"
+      <% if (locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
+
   </form>
 </div>
+
+<script src="/js/inv-update.js"></script>

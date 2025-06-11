@@ -211,52 +211,60 @@ invCont.editInventoryView = async function (req, res, next) {
 };
 
 invCont.updateInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
   const {
     inv_id,
     inv_make,
     inv_model,
-    inv_year,
     inv_description,
     inv_image,
     inv_thumbnail,
     inv_price,
+    inv_year,
     inv_miles,
     inv_color,
     classification_id,
   } = req.body;
 
-  try {
-    const updateResult = await invModel.updateInventory(req.body);
+  const updateResult = await invModel.updateInventory(
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  );
 
-    if (updateResult) {
-      req.flash("success", "Vehicle updated successfully.");
-      return res.redirect("/inv/");
-    } else {
-      req.flash("error", "Failed to update vehicle.");
-      const nav = await utilities.getNav();
-      const classificationSelect = await utilities.buildClassificationList(
-        classification_id
-      );
-      return res.render("./inventory/edit-inventory", {
-        title: "Edit " + inv_make + " " + inv_model,
-        nav,
-        classificationSelect,
-        errors: null,
-        inv_id,
-        inv_make,
-        inv_model,
-        inv_year,
-        inv_description,
-        inv_image,
-        inv_thumbnail,
-        inv_price,
-        inv_miles,
-        inv_color,
-        classification_id,
-      });
-    }
-  } catch (error) {
-    next(error);
+  if (updateResult) {
+    const itemName = updateResult.inv_make + " " + updateResult.inv_model;
+    req.flash("success", `The ${itemName} was successfully updated.`);
+    res.redirect("/inv/");
+  } else {
+    const classificationSelect = await utilities.buildClassificationList(classification_id);
+    const itemName = `${inv_make} ${inv_model}`;
+    req.flash("error", "Sorry, the update failed.");
+    res.status(501).render("inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      classificationSelect,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    });
   }
 };
 

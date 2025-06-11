@@ -42,3 +42,9 @@ function buildInventoryList(data) {
   // Display the contents in the Inventory Management view
   inventoryDisplay.innerHTML = dataTable;
 }
+
+const form = document.querySelector("#updateForm");
+form.addEventListener("change", function () {
+  const updateBtn = document.querySelector("button");
+  updateBtn.removeAttribute("disabled");
+});
