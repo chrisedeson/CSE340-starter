@@ -100,7 +100,7 @@ async function accountLogin(req, res) {
   }
   try {
     if (await bcrypt.compare(account_password, accountData.account_password)) {
-      req.flash("notice", "You are now logged in.")
+      req.flash("notice", "You are now logged in.");
       delete accountData.account_password;
       const accessToken = jwt.sign(
         accountData,
@@ -118,10 +118,7 @@ async function accountLogin(req, res) {
       }
       return res.redirect("/account/");
     } else {
-      req.flash(
-        "notice",
-        "Please check your credentials and try again."
-      );
+      req.flash("notice", "Please check your credentials and try again.");
       res.status(400).render("account/login", {
         title: "Login",
         nav,
@@ -134,7 +131,6 @@ async function accountLogin(req, res) {
   }
 }
 
-
 // Controller function for account management view
 async function buildAccountManagement(req, res) {
   let nav = await utilities.getNav();
@@ -146,12 +142,79 @@ async function buildAccountManagement(req, res) {
   });
 }
 
-async function logoutAccount(req, res) {
-  res.clearCookie("jwt") // Clear the JWT cookie
+/* *******************************************
+ * Logout Process
+ * Clears the JWT cookie and redirects to home
+ * *******************************************/
+
+async function accountLogout(req, res) {
+  res.clearCookie("jwt"); // Clear the JWT cookie
+  req.flash("notice", "You have successfully logged out.");
   req.session.destroy(() => {
-    res.redirect("/") // Redirect to home page
-  })
+    res.redirect("/"); // Redirect to home page
+  });
 }
 
+/* ***********************************
+ * Deliver Update Account View
+ * ***********************************/
+async function buildUpdateAccount(req, res) {
+  let nav = await utilities.getNav();
+  const accountData = res.locals.accountData;
+  res.render("account/update-account", {
+    title: "Update Account Information",
+    nav,
+    errors: null,
+    accountData,
+  });
+}
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, logoutAccount };
+/* ***********************************
+ * Process Account Update
+ * ***********************************/
+async function updateAccount(req, res) {
+  let nav = await utilities.getNav();
+  const { account_id } = res.locals.accountData; // using decoded token data
+  const { account_firstname, account_lastname, account_email } = req.body;
+
+  const updateResult = await accountModel.updateAccount(
+    account_id,
+    account_firstname,
+    account_lastname,
+    account_email
+  );
+
+  if (updateResult) {
+    // Refresh session or res.locals data with the new info
+    const updatedAccount = await accountModel.getAccountByEmail(account_email);
+    delete updatedAccount.account_password;
+    res.locals.accountData = updatedAccount;
+
+    req.flash("notice", "Account information updated successfully.");
+    return res.redirect("/account/");
+  } else {
+    req.flash("notice", "Sorry, the update failed.");
+    return res.status(501).render("account/update-account", {
+      title: "Update Account Information",
+      nav,
+      errors: null,
+      accountData: {
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email,
+      },
+    });
+  }
+}
+
+module.exports = {
+  buildLogin,
+  buildRegister,
+  registerAccount,
+  accountLogin,
+  buildAccountManagement,
+  accountLogout,
+  buildUpdateAccount,
+  updateAccount,
+};

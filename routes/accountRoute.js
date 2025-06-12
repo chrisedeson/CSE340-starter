@@ -39,6 +39,28 @@ router.get(
   utilities.handleErrors(accountController.buildAccountManagement)
 );
 
-router.get("/logout", utilities.handleErrors(accountController.logoutAccount));
+router.get("/logout", utilities.handleErrors(accountController.accountLogout));
+
+router.get(
+  "/update-account",
+  utilities.checkLogin, // Protect the route with login
+  utilities.handleErrors(accountController.buildUpdateAccount)
+);
+
+router.post(
+  "/update-account",
+  utilities.checkLogin,
+  regValidate.updateAccountRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+);
+
+router.get(
+  "/", 
+  utilities.checkLogin, 
+  utilities.handleErrors(accountController.buildAccountManagement)
+);
+
+router.get("/logout", utilities.checkLogin, accountController.accountLogout);
 
 module.exports = router;

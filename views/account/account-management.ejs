@@ -1,20 +1,23 @@
 <div class="account-management">
   <h2 class="page-title">Welcome, <%= accountData.account_firstname %>!</h2>
 
+  <!-- Flash Messages -->
   <% if (messages().trim().length > 0) { %>
     <div class="flash-message success">
       <%- messages() %>
     </div>
   <% } %>
 
+  <!-- Display Account Details -->
   <ul class="account-details">
     <li><strong>First Name:</strong> <%= accountData.account_firstname %></li>
     <li><strong>Last Name:</strong> <%= accountData.account_lastname %></li>
     <li><strong>Email:</strong> <%= accountData.account_email %></li>
   </ul>
 
+  <!-- Account Actions -->
   <div class="account-actions">
-    <a href="/account/update" class="btn primary">Update Account Information</a>
+    <a href="/account/update-account" class="btn primary">Update Account Information</a>
     <a href="/account/update-password" class="btn secondary">Change Password</a>
   </div>
 </div>
