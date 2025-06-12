@@ -145,22 +145,20 @@ Util.checkLogin = (req, res, next) => {
  **************************************** */
 Util.checkJWTToken = (req, res, next) => {
   if (req.cookies.jwt) {
-    jwt.verify(
-      req.cookies.jwt,
-      process.env.ACCESS_TOKEN_SECRET,
-      function (err, accountData) {
-        if (err) {
-          req.flash("Please log in");
-          res.clearCookie("jwt");
-          return res.redirect("/account/login");
-        }
-        res.locals.accountData = accountData;
-        res.locals.loggedin = 1;
-        next();
+    jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
+      if (err) {
+        res.clearCookie("jwt")
+        res.locals.loggedin = 0
+        return next()
       }
-    );
+      res.locals.accountData = accountData
+      res.locals.loggedin = 1
+      return next()
+    })
   } else {
-    next();
+    res.locals.loggedin = 0  // <<---- ADD THIS LINE
+    next()
   }
-};
+}
+
 module.exports = Util;
