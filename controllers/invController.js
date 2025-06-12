@@ -311,4 +311,26 @@ invCont.deleteInventoryItem = async function (req, res) {
   }
 };
 
+// Wk 06 Enhancement Idea
+
+invCont.toggleVehicleStatus = async function(req, res) {
+  const inv_id = parseInt(req.params.inv_id);
+  const { inv_status } = req.body;
+
+  try {
+    const result = await invModel.updateVehicleStatus(inv_id, inv_status);
+    if (result.rowCount) {
+      req.flash("notice", `Vehicle status updated to ${inv_status}`);
+    } else {
+      req.flash("notice", "Update failed.");
+    }
+    res.redirect("/inv/management");
+  } catch (error) {
+    console.error("Toggle status error:", error);
+    req.flash("notice", "An error occurred.");
+    res.redirect("/inv/management");
+  }
+}
+
+
 module.exports = invCont;

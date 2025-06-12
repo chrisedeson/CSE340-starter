@@ -868,3 +868,151 @@ select {
   background-color: #6c757d;
   color: #fff;
 }
+
+
+
+/* Reset box-sizing for consistency */
+.qwexz-header *, 
+.qwexz-tbody *, 
+.qwexz-row * {
+  box-sizing: border-box;
+}
+
+/* Table header styles */
+.qwexz-header {
+  background-color: #f3f4f6; /* light gray */
+  color: #374151; /* dark slate */
+  font-weight: 600;
+  font-size: 1rem;
+  border-bottom: 2px solid #d1d5db; /* soft border */
+}
+
+.qwexz-th {
+  padding: 12px 16px;
+  text-align: left;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.03em;
+}
+
+/* Table body and rows */
+.qwexz-tbody {
+  background-color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.95rem;
+  color: #4b5563; /* medium gray */
+}
+
+.qwexz-row:nth-child(even) {
+  background-color: #f9fafb; /* subtle alternate row */
+}
+
+.qwexz-row:hover {
+  background-color: #e0f2fe; /* very light blue */
+  cursor: default;
+  transition: background-color 0.15s ease-in-out;
+}
+
+/* Table cell padding and vertical alignment */
+.qwexz-vehicle,
+.qwexz-price,
+.qwexz-modify,
+.qwexz-status-cell {
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+/* Links */
+.qwexz-link {
+  color: #2563eb; /* blue-600 */
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 6px;
+  transition: color 0.2s ease;
+}
+
+.qwexz-link:hover,
+.qwexz-link:focus {
+  color: #1d4ed8; /* blue-700 */
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Status form inline */
+.qwexz-status-form {
+  display: inline-block;
+  margin-right: 12px;
+}
+
+/* Toggle button - clean and modern */
+.qwexz-toggle-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  user-select: none;
+  font-size: 0.9rem;
+  min-width: 110px;
+}
+
+/* Available status styling */
+.qwexz-available {
+  background-color: #d1fae5; /* green-100 */
+  color: #065f46; /* green-800 */
+  border-color: #10b981; /* green-500 */
+}
+
+.qwexz-available:hover,
+.qwexz-available:focus {
+  background-color: #10b981; /* green-500 */
+  color: white;
+  border-color: #065f46;
+  outline: none;
+}
+
+/* Sold status styling */
+.qwexz-sold {
+  background-color: #fee2e2; /* red-100 */
+  color: #991b1b; /* red-800 */
+  border-color: #ef4444; /* red-500 */
+}
+
+.qwexz-sold:hover,
+.qwexz-sold:focus {
+  background-color: #ef4444; /* red-500 */
+  color: white;
+  border-color: #991b1b;
+  outline: none;
+}
+
+/* Status badges */
+.qwexz-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+  vertical-align: middle;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+  border: 1px solid transparent;
+}
+
+.qwexz-available-badge {
+  background-color: #bbf7d0; /* green-200 */
+  color: #047857; /* green-700 */
+  border-color: #047857;
+}
+
+.qwexz-sold-badge {
+  background-color: #fecaca; /* red-200 */
+  color: #7f1d1d; /* red-900 */
+  border-color: #7f1d1d;
+}

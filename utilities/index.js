@@ -161,4 +161,19 @@ Util.checkJWTToken = (req, res, next) => {
   }
 }
 
+
+/****************************
+ * Check Account Type
+ * **************************/
+Util.checkAccountType = (req, res, next) => {
+  const accountType = res.locals.accountData?.account_type;
+  if (accountType === 'Employee' || accountType === 'Admin') {
+    return next();
+  } else {
+    req.flash("error", "You do not have permission to perform this action.");
+    return res.redirect("/account/login");
+  }
+};
+
+
 module.exports = Util;

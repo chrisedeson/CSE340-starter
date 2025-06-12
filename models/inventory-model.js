@@ -133,6 +133,21 @@ async function deleteInventoryItem(inv_id) {
   }
 }
 
+/* ***************************
+ *  Wk06 - Enhacement Idea
+ * ************************** */
+
+async function updateVehicleStatus(inv_id, inv_status) {
+  const sql = `
+    UPDATE inventory
+    SET inv_status = $1
+    WHERE inv_id = $2
+    RETURNING *;
+  `;
+  return await pool.query(sql, [inv_status, inv_id]);
+}
+
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
@@ -141,4 +156,5 @@ module.exports = {
   addInventoryItem,
   updateInventory,
   deleteInventoryItem,
+  updateVehicleStatus
 };
