@@ -30,7 +30,7 @@ router.post(
   regValidate.loginRules(),
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
-)
+);
 
 // Default route for account management (after login)
 router.get(
@@ -38,5 +38,7 @@ router.get(
   utilities.checkLogin, // to protect this route (requires logged-in user)
   utilities.handleErrors(accountController.buildAccountManagement)
 );
+
+router.get("/logout", utilities.handleErrors(accountController.logoutAccount));
 
 module.exports = router;

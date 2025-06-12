@@ -822,3 +822,49 @@ select {
 .btn-delete:hover {
   background-color: #038c8c;
 } */
+
+
+.account-management {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+.account-details {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.account-details li {
+  margin-bottom: 0.5rem;
+}
+
+.account-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn.primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn.secondary {
+  background-color: #6c757d;
+  color: #fff;
+}

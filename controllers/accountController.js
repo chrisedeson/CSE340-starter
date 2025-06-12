@@ -100,6 +100,7 @@ async function accountLogin(req, res) {
   }
   try {
     if (await bcrypt.compare(account_password, accountData.account_password)) {
+      req.flash("notice", "You are now logged in.")
       delete accountData.account_password;
       const accessToken = jwt.sign(
         accountData,
@@ -118,7 +119,7 @@ async function accountLogin(req, res) {
       return res.redirect("/account/");
     } else {
       req.flash(
-        "message notice",
+        "notice",
         "Please check your credentials and try again."
       );
       res.status(400).render("account/login", {
@@ -145,4 +146,12 @@ async function buildAccountManagement(req, res) {
   });
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement };
+async function logoutAccount(req, res) {
+  res.clearCookie("jwt") // Clear the JWT cookie
+  req.session.destroy(() => {
+    res.redirect("/") // Redirect to home page
+  })
+}
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, logoutAccount };
