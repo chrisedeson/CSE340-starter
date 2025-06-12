@@ -137,7 +137,7 @@ async function buildAccountManagement(req, res) {
   res.render("account/account-management", {
     title: "Account Management",
     nav,
-    flashMessage: req.flash("notice"),
+    message: req.flash("notice"),
     errors: null,
   });
 }
@@ -208,6 +208,57 @@ async function updateAccount(req, res) {
   }
 }
 
+/* ***********************************
+ * Deliver Update Password View
+ * ***********************************/
+async function buildUpdatePassword(req, res) {
+  let nav = await utilities.getNav();
+  const accountData = res.locals.accountData; // from JWT
+  res.render("account/update-password", {
+    title: "Change Password",
+    nav,
+    errors: null,
+    message: req.flash("notice"),
+    account_id: accountData.account_id,
+  });
+}
+/* ***********************************
+ * Process Password Update
+ * ***********************************/
+async function updatePassword(req, res) {
+  let nav = await utilities.getNav();
+  const { account_id } = res.locals.accountData; // from JWT decoded data
+  const { account_password } = req.body;
+
+  try {
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(account_password, 10);
+
+    const updateResult = await accountModel.updatePassword(account_id, hashedPassword);
+
+    if (updateResult) {
+      req.flash("notice", "Password updated successfully.");
+      return res.redirect("/account");
+    } else {
+      req.flash("notice", "Sorry, the password update failed.");
+      return res.status(500).render("account/update-password", {
+        title: "Change Password",
+        nav,
+        errors: null,
+      });
+    }
+  } catch (error) {
+    console.error("Password update error:", error);
+    req.flash("notice", "An error occurred. Please try again.");
+    return res.status(500).render("account/update-password", {
+      title: "Change Password",
+      nav,
+      errors: null,
+    });
+  }
+}
+
+
 module.exports = {
   buildLogin,
   buildRegister,
@@ -217,4 +268,6 @@ module.exports = {
   accountLogout,
   buildUpdateAccount,
   updateAccount,
+  updatePassword,
+  buildUpdatePassword,
 };

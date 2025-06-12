@@ -154,5 +154,35 @@ validate.checkUpdateData = async (req, res, next) => {
   next();
 };
 
+validate.passwordRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ];
+};
+
+validate.checkUpdatePassword = async (req, res, next) => {
+  const errors = validationResult(req);
+  const { account_id } = req.body;
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    return res.render("account/update-account", {
+      title: "Update Password",
+      nav,
+      errors: errors.array(),
+      account_id,
+    });
+  }
+  next();
+};
 
 module.exports = validate

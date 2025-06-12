@@ -63,4 +63,19 @@ router.get(
 
 router.get("/logout", utilities.checkLogin, accountController.accountLogout);
 
+// Route to show the form (GET)
+router.get(
+  "/update-password",
+  utilities.checkLogin, // Protect route
+  accountController.buildUpdatePassword
+);
+
+// Route to process the form (POST)
+router.post(
+  "/update-password",
+  regValidate.passwordRules(),
+  regValidate.checkUpdatePassword,
+  accountController.updatePassword
+)
+
 module.exports = router;
